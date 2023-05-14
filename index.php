@@ -14,20 +14,20 @@ try {
   $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
   if (isset($_POST['apellido'])) {
-    $consultaSQL = "SELECT * FROM alumnos WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
+    $consultaSQL = "SELECT * FROM clientes WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
   } else {
-    $consultaSQL = "SELECT * FROM alumnos";
+    $consultaSQL = "SELECT * FROM clientes";
   }
 
   $sentencia = $conexion->prepare($consultaSQL);
   $sentencia->execute();
 
-  $alumnos = $sentencia->fetchAll();
+  $clientes = $sentencia->fetchAll();
 } catch (PDOException $error) {
   $error = $error->getMessage();
 }
 
-$titulo = isset($_POST['apellido']) ? 'Lista de alumnos (' . $_POST['apellido'] . ')' : 'Listado Ordenes de Servicios';
+$titulo = isset($_POST['apellido']) ? 'Lista de clientes (' . $_POST['apellido'] . ')' : 'Listado Ordenes de Servicios';
 ?>
 
 <?php include "templates/header.php"; ?>
@@ -54,12 +54,8 @@ if ($error) {
       <a href="crearcliente.php" class="btn btn-primary mt-4">Crear Cliente</a>
       <a href="crearos.php" class="btn btn-primary mt-4">Crear Orden de Servicio</a>
       <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
-      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
-      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
-      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
-      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
-
-
+      
+      
       <hr>
 
 
@@ -88,21 +84,21 @@ if ($error) {
             <th>Nombre</th>
             <th>Apellido</th>
             <th>Email</th>
-            <th>Edad</th>
+            <th>Fono</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody>
           <?php
-          if ($alumnos && $sentencia->rowCount() > 0) {
-            foreach ($alumnos as $fila) {
+          if ($clientes&& $sentencia->rowCount() > 0) {
+            foreach ($clientes as $fila) {
           ?>
               <tr>
                 <td><?php echo escapar($fila["id"]); ?></td>
                 <td><?php echo escapar($fila["nombre"]); ?></td>
                 <td><?php echo escapar($fila["apellido"]); ?></td>
                 <td><?php echo escapar($fila["email"]); ?></td>
-                <td><?php echo escapar($fila["edad"]); ?></td>
+                <td><?php echo escapar($fila["fono"]); ?></td>
                 <td>
                   <a href="<?= 'borrar.php?id=' . escapar($fila["id"]) ?>">🗑️Borrar</a>
                   <a href="<?= 'editar.php?id=' . escapar($fila["id"]) ?>">✏️Editar</a>

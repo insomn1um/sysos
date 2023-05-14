@@ -19,7 +19,8 @@ if (isset($_POST['submit'])) {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
-    $cliente = [
+    $clientes = [
+      
       "rut"   => $_POST['rut'],
       "nombre"   => $_POST['nombre'],
       "apellido" => $_POST['apellido'],
@@ -30,11 +31,11 @@ if (isset($_POST['submit'])) {
       "direccion"    => $_POST['direccion'],
     ];
 
-    $consultaSQL = "INSERT INTO cliente (rut, nombre, apellido, email, fono, celular, empresa, direccion)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($cliente)) . ")";
+    $consultaSQL = "INSERT INTO clientes (rut, nombre, apellido, email, fono, celular, empresa, direccion)";
+    $consultaSQL .= "values (:" . implode(", :", array_keys($clientes)) . ")";
 
     $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($cliente);
+    $sentencia->execute($clientes);
 
   } catch(PDOException $error) {
     $resultado['error'] = true;

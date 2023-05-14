@@ -14,7 +14,7 @@ CREATE TABLE alumnos (
 
 CREATE TABLE clientes (
   id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  rut VARCHAR(10) ,
+  rut VARCHAR(15) ,
   nombre VARCHAR(30) ,
   apellido VARCHAR(30) ,
   email VARCHAR(50) ,
