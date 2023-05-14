@@ -11,3 +11,15 @@ CREATE TABLE alumnos (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE clientes (
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  rut VARCHAR(10) ,
+  nombre VARCHAR(30) ,
+  apellido VARCHAR(30) ,
+  email VARCHAR(50) ,
+  fono VARCHAR(20),
+  celular VARCHAR(20),
+  empresa VARCHAR(20),
+  direccion VARCHAR(50)
+);

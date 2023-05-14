@@ -54,7 +54,11 @@ if ($error) {
       <a href="crearcliente.php" class="btn btn-primary mt-4">Crear Cliente</a>
       <a href="crearos.php" class="btn btn-primary mt-4">Crear Orden de Servicio</a>
       <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
-            
+      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
+      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
+      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
+      <a href="crear.php" class="btn btn-primary mt-4"> Informes</a>
+
 
       <hr>
 

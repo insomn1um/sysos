@@ -13,7 +13,7 @@ if (isset($_POST['submit'])) {
     'mensaje' => 'La Orden de Servicio ha sido creada exitosamente! ' . escapar($_POST['nombre']) . ' ha sido agregado con éxito'
   ];
 
-  $config = include 'config.php';''
+  $config = include 'config.php';
 
   try {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
