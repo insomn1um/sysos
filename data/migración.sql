@@ -23,3 +23,29 @@ CREATE TABLE clientes (
   empresa VARCHAR(20),
   direccion VARCHAR(50)
 );
+
+CREATE TABLE clientes1 (
+  id_cliente VARCHAR(15) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nombre_cliente VARCHAR(30),
+  apellido_cliente VARCHAR(30),
+  email_cliente VARCHAR(50),
+  fono_cliente VARCHAR(20),
+  celular_cliente VARCHAR(20),
+  empresa_cliente VARCHAR(20),
+  direccion_cliente VARCHAR(50)
+);
+
+
+CREATE TABLE os (
+  id_os INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  id_cliente VARCHAR(15),
+  numero_ot INT(11),
+  numero_oc INT(11),
+  nombre_cliente VARCHAR(30),
+  apellido_cliente VARCHAR(30),
+  email_cliente VARCHAR(50),
+  fono_cliente VARCHAR(20),
+  celular_cliente VARCHAR(20),
+  empresa_cliente VARCHAR(20),
+  direccion_cliente VARCHAR(50)
+);

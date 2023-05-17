@@ -25,17 +25,26 @@ if (isset($_POST['submit'])) {
 
     $clientes = [
       "id"        => $_GET['id'],
-      "nombre"    => $_POST['nombre'],
-      "apellido"  => $_POST['apellido'],
-      "email"     => $_POST['email'],
-      "fono"      => $_POST['fono']
+      "rut"   => $_POST['rut'],
+      "nombre"   => $_POST['nombre'],
+      "apellido" => $_POST['apellido'],
+      "email"   => $_POST['email'],
+      "fono"    => $_POST['fono'],
+      "celular"  => $_POST['celular'],
+      "empresa"     => $_POST['empresa'],
+      "direccion"    => $_POST['direccion'],
     ];
     
     $consultaSQL = "UPDATE clientes SET
+        id = :id,
+        rut = :rut,
         nombre = :nombre,
         apellido = :apellido,
         email = :email,
         fono = :fono,
+        celular = :celular,
+        empresa = :empresa,
+        direccion = direccion,
         updated_at = NOW()
         WHERE id = :id";
     $consulta = $conexion->prepare($consultaSQL);
@@ -95,7 +104,7 @@ if (isset($_POST['submit']) && !$resultado['error']) {
     <div class="row">
       <div class="col-md-12">
         <div class="alert alert-success" role="alert">
-          El cl$clientes ha sido actualizado correctamente
+          El cliente ha sido actualizado correctamente
         </div>
       </div>
     </div>
@@ -121,6 +130,12 @@ if (isset($clientes) && $clientes) {
             <label for="apellido">Apellido</label>
             <input type="text" name="apellido" id="apellido" value="<?= escapar($clientes['apellido']) ?>" class="form-control">
           </div>
+          
+          <div class="form-group">
+            <label for="rut">Rut</label>
+            <input type="text" name="rut" id="rut" value="<?= escapar($clientes['rut']) ?>" class="form-control">
+          </div>  
+        
           <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" value="<?= escapar($clientes['email']) ?>" class="form-control">
@@ -129,6 +144,20 @@ if (isset($clientes) && $clientes) {
             <label for="fono">Fono</label>
             <input type="text" name="fono" id="fono" value="<?= escapar($clientes['fono']) ?>" class="form-control">
           </div>
+          <div class="form-group">
+            <label for="celular">Celular</label>
+            <input type="text" name="celular" id= "celular" value="<?= escapar($clientes['celular']) ?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa</label>
+            <input type="text" name="empresa" id="empresa" value="<?= escapar($clientes['empresa']) ?>" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="direccion">Direccion</label>
+            <input type="text" name="direccion" id="direccion" value="<?= escapar($clientes['direccion']) ?>" class="form-control">
+          </div>
+          
+          
           <div class="form-group">
             <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
             <input type="submit" name="submit" class="btn btn-primary" value="Actualizar">
