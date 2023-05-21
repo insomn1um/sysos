@@ -83,3 +83,12 @@ CREATE TABLE informe (
   estado_os VARCHAR(20),
   direccion_cliente VARCHAR(50)
 );
+
+CREATE TABLE equipo (
+  id_equipo INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  marca_equipo VARCHAR(100),
+  descripcion_equipo VARCHAR(255),
+  modelo_equipo VARCHAR(100),
+  serie_equipo VARCHAR(100),
+  nota_equipo VARCHAR(30)
+);

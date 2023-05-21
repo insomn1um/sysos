@@ -19,18 +19,73 @@ if (isset($_POST['submit'])) {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
 
-    $alumno = [
-      "nombre"   => $_POST['nombre'],
-      "apellido" => $_POST['apellido'],
-      "email"    => $_POST['email'],
-      "edad"     => $_POST['edad'],
+/*  VARIABLES OS
+    id_os
+    id_cliente
+    numero_ot
+    numero_oc
+    nombre_cliente
+    apellido_cliente
+    email_cliente
+    fono_cliente
+    celular_cliente
+    empresa_cliente
+    tipo_mantencion
+    direccion_cliente
+    estado_os
+*/
+
+/*  VARIABLES EQUIPO
+  id_equipo 
+  nombre_equipo 
+  descripcion_equipo 
+  modelo_equipo 
+  serie_equipo 
+  nota_equipo 
+*/
+
+    $clientes = [
+      "id_os"   => $_POST['id_os'],
+      "id_cliente" => $_POST['id_cliente'],
+      "numero_ot"    => $_POST['numero_ot'],
+      "numero_oc"     => $_POST['numero_oc'],
+      "nombre_cliente"   => $_POST['nombre_cliente'],
+      "apellido_cliente" => $_POST['apellido_cliente'],
+      "email_cliente"    => $_POST['email_cliente'],
+      "fono_cliente"     => $_POST['fono_cliente'],
+      "celular_cliente"   => $_POST['celular_cliente'],
+      "empresa_cliente" => $_POST['empresa_cliente'],
+      "tipo_mantencion"    => $_POST['tipo_mantencion'],
+      "direccion_cliente"     => $_POST['direccion_cliente'],
+      "estado_os"     => $_POST['estado_os'],
     ];
 
-    $consultaSQL = "INSERT INTO alumnos (nombre, apellido, email, edad)";
-    $consultaSQL .= "values (:" . implode(", :", array_keys($alumno)) . ")";
+    $equipo = [
+      "id_os"   => $_POST['id_os'],
+      "id_cliente" => $_POST['id_cliente'],
+      "numero_ot"    => $_POST['numero_ot'],
+      "numero_oc"     => $_POST['numero_oc'],
+      "nombre_cliente"   => $_POST['nombre_cliente'],
+      "apellido_cliente" => $_POST['apellido_cliente'],
+      "email_cliente"    => $_POST['email_cliente'],
+      "fono_cliente"     => $_POST['fono_cliente'],
+      "celular_cliente"   => $_POST['celular_cliente'],
+      "empresa_cliente" => $_POST['empresa_cliente'],
+      "tipo_mantencion"    => $_POST['tipo_mantencion'],
+      "direccion_cliente"     => $_POST['direccion_cliente'],
+      "estado_os"     => $_POST['estado_os'],
+    ];
+
+    // $consultaSQL = "INSERT INTO alumnos (nombre, apellido, email, edad)";
+    // $consultaSQL .= "values (:" . implode(", :", array_keys($alumno)) . ")";
+
+    $consultaSQL = "INSERT INTO clientes1 (id_os, id_cliente, numero_ot, numero_oc, nombre_cliente, apellido_cliente, email_cliente, fono_cliente, celular_cliente, celular_cliente, empresa_cliente, tipo_mantencion, direccion_cliente, estado_os)";
+    $consultaSQL .= "values (:" . implode(", :", array_keys($clientes)) . ")";
 
     $sentencia = $conexion->prepare($consultaSQL);
-    $sentencia->execute($alumno);
+    // $sentencia->execute($alumno);
+
+    $sentencia->execute($clientes);
 
   } catch(PDOException $error) {
     $resultado['error'] = true;
@@ -62,23 +117,86 @@ if (isset($resultado)) {
     <div class="col-md-12">
       <h2 class="mt-4">Crear Orden de Servicio</h2>
       <hr>
+
+      <h4 class="mt-5">Cliente</h4>
+      
+      <form method="post" class="form-inline">
+        <div class="form-group mr-3">
+          <input type="text" id="apellido_cliente" name="apellido_cliente" placeholder="Buscar por Apellido" class="form-control">
+        </div>
+        <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
+        <button type="submit" name="submit" class="btn btn-primary">Buscar</button>
+      </form>
+      
+      <hr>
+
       <form method="post">
         <div class="form-group">
-          <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" id="nombre" class="form-control" required>
+          <label for="nombre_cliente">Nombre</label>
+          <input type="text" name="nombre_cliente" id="nombre_cliente" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="apellido">Apellido</label>
-          <input type="text" name="apellido" id="apellido" class="form-control"required>
+          <label for="apellido_cliente">Apellido</label>
+          <input type="text" name="apellido_cliente" id="apellido_cliente" class="form-control"required>
+        </div>
+        <div class="form-group">
+          <label for="direccion_cliente">Direccion</label>
+          <input type="text" name="direccion_cliente" id="direccion_cliente" class="form-control"required>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" name="email" id="email" class="form-control"required>
         </div>
         <div class="form-group">
-          <label for="edad">Edad</label>
-          <input type="text" name="edad" id="edad" class="form-control"required>
+          <label for="empresa_cliente">Empresa</label>
+          <input type="text" name="empresa_cliente" id="empresa_cliente" class="form-control"required>
         </div>
+
+        <h4 class="mt-5">Equipo</h4>
+
+        <hr>
+
+
+        <form method="post">
+        <div class="form-group">
+          <label for="marca_equipo">Marca</label>
+          <input type="text" name="marca_equipo" id="marca_equipo" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="modelo_equipo">Modelo</label>
+          <input type="text" name="modelo_equipo" id="modelo_equipo" class="form-control"required>
+        </div>
+        <div class="form-group">
+          <label for="descripcion_equipo">Descripcion</label>
+          <input type="text" name="descripcion_equipo" id="descripcion_equipo" class="form-control"required>
+        </div>
+        <div class="form-group">
+          <label for="serie_equipo">Serie</label>
+          <input type="text" name="serie_equipo" id="serie_equipo" class="form-control"required>
+        </div>
+        <div class="form-group">
+          <label for="nota_equipo">Nota</label>
+          <input type="text" name="nota_equipo" id="nota_equipo" class="form-control"required>
+        </div>
+
+
+        <hr>
+        
+        
+        
+        
+  <!-- id_equipo INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  nombre_equipo VARCHAR(100),
+  descripcion_equipo VARCHAR(255),
+  modelo_equipo VARCHAR(100),
+  serie_equipo VARCHAR(100),
+  nota_equipo VARCHAR(30) -->
+        
+        
+        
+        
+        
+        
         <div class="form-group">
           <input name="csrf" type="hidden" value="<?php echo escapar($_SESSION['csrf']); ?>">
           <input type="submit" name="submit" class="btn btn-primary" value="Guardar">
@@ -89,4 +207,4 @@ if (isset($resultado)) {
   </div>
 </div>
 
-<?php include 'templates/footer.php'; ?>
+<?php include 'templates/footer.php'; ?> 
