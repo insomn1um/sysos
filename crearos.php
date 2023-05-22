@@ -180,6 +180,38 @@ if (isset($resultado)) {
         </div>
 
 
+        <h4 class="mt-5">Reporte</h4>
+
+        <hr>
+
+
+        <form method="post">
+        <div class="form-group">
+          <label for="marca_equipo">Reporte Cliente</label>
+          <input type="text" name="reporte_cliente" id="reporte_cliente" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="observaciones_equipo">Observaciones</label>
+          <input type="text" name="observaciones_equipo" id="observaciones_equipo" class="form-control" required>
+        </div>
+        
+
+        <h4 class="mt-5">Tipo de Mantencion</h4>
+
+        <hr>
+
+        <p>
+            <input type="checkbox" name="mantencion_preventiva" value="mantencion_preventiva"> Preventiva<br>
+            <input type="checkbox" name="mantencion_correctiva" value="mantencion_correctiva"> Correctiva<br>
+            <input type="checkbox" name="instalacion" value="instalacion"> Instalacion<br>
+            <input type="checkbox" name="garantia" value="garantia"> Garantia<br>
+            <input type="checkbox" name="contrato" value="contrato"> Contrato<br>
+            <input type="checkbox" name="facturable" value="facturable"> Facturable<br>
+       </p>
+       
+      
+      
+      
         <hr>
         
         
