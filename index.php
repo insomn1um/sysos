@@ -58,7 +58,6 @@ if ($error) {
       
       <hr>
 
-
       <form method="post" class="form-inline">
         <div class="form-group mr-3">
           <input type="text" id="apellido" name="apellido" placeholder="Buscar por apellido" class="form-control">
@@ -69,9 +68,6 @@ if ($error) {
     </div>
   </div>
 </div>
-
-
-
 
 <div class="container">
   <div class="row">
