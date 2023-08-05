@@ -10,7 +10,7 @@ if (isset($_POST['submit']) && !hash_equals($_SESSION['csrf'], $_POST['csrf'])) 
 if (isset($_POST['submit'])) {
   $resultado = [
     'error' => false,
-    'mensaje' => 'La Orden de Servicio ha sido creada exitosamente! ' . escapar($_POST['nombre']) . ' ha sido agregado con éxito'
+    'mensaje' => 'La Orden de Servicio ha sido creada exitosamente!' . escapar($_POST['nombre']) . 'ha sido agregado con éxito'
   ];
 
   $config = include 'config.php';
@@ -18,6 +18,20 @@ if (isset($_POST['submit'])) {
   try {
     $dsn = 'mysql:host=' . $config['db']['host'] . ';dbname=' . $config['db']['name'];
     $conexion = new PDO($dsn, $config['db']['user'], $config['db']['pass'], $config['db']['options']);
+
+    if (isset($_POST['apellido'])) {
+      $consultaSQL = "SELECT * FROM clientes WHERE apellido LIKE '%" . $_POST['apellido'] . "%'";
+    } else {
+      $consultaSQL = "SELECT * FROM clientes";
+    }
+  
+    $sentencia = $conexion->prepare($consultaSQL);
+    $sentencia->execute();
+  
+    $clientes = $sentencia->fetchAll();
+  } catch (PDOException $error) {
+    $error = $error->getMessage();
+
 
 /*  VARIABLES OS
     id_os
